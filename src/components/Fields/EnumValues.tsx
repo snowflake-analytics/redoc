@@ -19,7 +19,12 @@ export class EnumValues extends React.PureComponent<EnumValuesProps> {
           {type === 'array' ? 'Items' : ''} {values.length === 1 ? 'Value' : 'Enum'}:
         </FieldLabel>
         {values.map((value, idx) => (
-          <ExampleValue key={idx}>{JSON.stringify(value)} </ExampleValue>
+          <span style={{ whiteSpace: 'nowrap' }}>
+            <ExampleValue key={idx} style={{ marginRight: 0 }}>
+              {JSON.stringify(value)}
+            </ExampleValue>
+            {idx !== values.length - 1 ? ',' : ''}
+          </span>
         ))}
       </div>
     );
