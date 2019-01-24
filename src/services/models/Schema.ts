@@ -22,8 +22,8 @@ import {
 export class SchemaModel {
   pointer: string;
 
-  type: string;
-  displayType: string;
+  type: any; // used to be string
+  displayType: string; // this should probably be an array...?
   typePrefix: string = '';
   title: string;
   description: string;
@@ -139,6 +139,10 @@ export class SchemaModel {
       this.initOneOf(schema.anyOf, parser);
       this.oneOfType = 'Any of';
       return;
+    }
+
+    if (typeof this.type === 'object') {
+      this.displayType = Object.values(this.type).join(' or ');
     }
 
     if (this.type === 'object') {
